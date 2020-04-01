@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <style name="title">
+        <item name="fontFamily">@font/fredoka_one</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="sub_title">
+        <item name="fontFamily">@font/fredoka_one</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="txt_style">
+        <item name="fontFamily">@font/baloo_reg</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="hint_txt_style">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="spinner_colors">
+        <item name="android:dropDownSelector">@color/theater_red</item>
+        <item name="android:popupBackground">@color/theater_red</item>
+        <item name="android:background">@color/theater_red</item>
+    </style>
+
+    <style name="btn_txt">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/baloo_med</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="radio_btn_txt">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/baloo_reg</item>
+        <item name="android:textColor">@color/theater_red</item>
+        <item name="buttonTint">@color/theater_red</item>
+    </style>
+
+    <style name="details_txt">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/theater_red</item>
+        <item name="android:textStyle">italic|bold</item>
+        <item name="fontFamily">@font/baloo_reg</item>
+    </style>
+</resources>

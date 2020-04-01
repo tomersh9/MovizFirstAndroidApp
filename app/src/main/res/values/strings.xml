@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">FirstUIApp</string>
+    <string name="app_title">Welcome to Moviz</string>
+    <string name="enjoy">Enjoy our wide variety of films</string>
+
+    <string-array name="theater_array">
+        <item>@string/cinema_city</item>
+        <item>@string/yes_planet</item>
+        <item>@string/cinema_city_vip</item>
+        <item>@string/yes_planet_vip</item>
+        <item>@string/netflix</item>
+    </string-array>
+
+    <string name="cinema_city">Cinema City</string>
+    <string name="yes_planet">Yes Planet</string>
+    <string name="cinema_city_vip">Cinema City VIP</string>
+    <string name="yes_planet_vip">Yes Planet VIP</string>
+    <string name="netflix">Netflix</string>
+    <string name="choose_movie">First, choose a movie</string>
+    <string name="choose_theater">Choose Theater</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="choose_time">Choose Time</string>
+    <string name="input_first_name">Enter first name</string>
+    <string name="input_last_name">Enter last name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="years_18">I\'m over 18 years old</string>
+    <string name="place_order">Place Order</string>
+    <string name="lotr_1">LOTR Fellowship of the Ring</string>
+    <string name="lotr_2">LOTR Two Towers</string>
+    <string name="lotr_3">LOTR Return of the King</string>
+    <string name="whiplash">Whiplash</string>
+    <string name="troy">Troy</string>
+    <string name="potter">Harry Potter Series</string>
+    <string name="spirited_away">Spirited Away</string>
+    <string name="django">Django Unchained</string>
+    <string name="pulp">Pulp Fiction</string>
+    <string name="inception">Inception</string>
+    <string name="num_of_seats">Select # of tickets</string>
+    <string name="legal_age">Underaged must buy at least 2 tickets</string>
+    <string name="legal_2_tickets_toast">You must purchase at least 2 tickets as a minor</string>
+    <string name="hint_first_name">Saba</string>
+    <string name="hint_last_name">Tobi</string>
+    <string name="good_job_man">God job man!</string>
+    <string name="good_job_woman">Good job lady!</string>
+    <string name="good_job_other">Good job you..?</string>
+    <string name="sagiv">Sagiv Gay</string>
+    <string name="thanks">Thank you</string>
+    <string name="details">Order Details:</string>
+    <string name="detail_movie">- Movie:</string>
+    <string name="detail_theater">- Theater:</string>
+    <string name="detail_date">- Date:</string>
+    <string name="detail_time">- Time:</string>
+    <string name="have_fun">Have fun!</string>
+    <string name="pls_enter_movie_error">Please select a movie</string>
+    <string name="pls_enter_date_error">Please select a date</string>
+    <string name="pls_enter_time_error">Please select time</string>
+    <string name="pls_enter_first_name_error">Please enter first name</string>
+    <string name="pls_enter_last_name_error">Please enter last name</string>
+    <string name="pls_select_gender_error">Please select gender</string>
+    <string name="pls_buy_tickets_error">Please purchase tickets</string>
+    <string name="free">You know what? For you, Free of charge!</string>
+    <string name="popcorn_coke">And here\'s XL Popcorn and Coke, on me :)</string>
+    <string name="back_to_order">Back to order</string>
+    <string name="rate_us">Rate Us!</string>
+    <string name="rate_btn">Rate app</string>
+</resources>
