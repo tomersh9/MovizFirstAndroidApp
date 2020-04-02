@@ -22,23 +22,23 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_shape">
 
-            <TextView
-                android:id="@+id/main_txt_view"
-                style="@style/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="@string/app_title"/>
+                <TextView
+                    android:id="@+id/main_txt_view"
+                    style="@style/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="@string/app_title" />
 
-            <TextView
-                android:id="@+id/enjoy_txt_view"
-                style="@style/sub_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_txt_view"
-                android:gravity="center"
-                android:text="@string/enjoy" />
+                <TextView
+                    android:id="@+id/enjoy_txt_view"
+                    style="@style/sub_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_txt_view"
+                    android:gravity="center"
+                    android:text="@string/enjoy" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -112,21 +112,21 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/choose_theater_txt_view"
-                    style="@style/txt_style"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:text="@string/choose_theater" />
+                    <TextView
+                        android:id="@+id/choose_theater_txt_view"
+                        style="@style/txt_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:text="@string/choose_theater" />
 
-                <Spinner
-                    android:id="@+id/theater_spinner"
-                    style="@style/spinner_colors"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"/>
+                    <Spinner
+                        android:id="@+id/theater_spinner"
+                        style="@style/spinner_colors"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -265,8 +265,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/names_layout"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp">
 
                 <RadioGroup
@@ -427,8 +427,8 @@
                     style="@style/txt_style"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
                     android:layout_marginTop="20dp"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/thanks"
                     android:textStyle="bold" />
@@ -532,7 +532,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:textAlignment="viewStart"/>
+                        android:textAlignment="viewStart" />
                 </LinearLayout>
 
                 <TextView
@@ -551,11 +551,11 @@
                 android:id="@+id/bill_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_below="@id/details_layout"
-                android:layout_marginBottom="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp">
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone">
 
                 <Button
                     android:id="@+id/bill_btn"
@@ -564,7 +564,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_shape"
-                    android:text="@string/rate_btn"/>
+                    android:text="@string/rate_btn" />
             </RelativeLayout>
 
         </RelativeLayout>

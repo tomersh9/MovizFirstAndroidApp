@@ -8,11 +8,12 @@
     <color name="green">#00FF00</color>
     <color name="blue">#0000FF</color>
     <color name="yellow">#EEEA00</color>
+    <color name="theater_red">#F58420</color>
     <color name="gold">#CC6205</color>
+    <color name="splashEnd">#B35709</color>
     <color name="goldish">#AE860E</color>
     <color name="red">#FF0000</color>
     <color name="dark_red">#BC0E0E</color>
-    <color name="theater_red">#F58420</color>
     <color name="purple">#9F15B6</color>
     <color name="white">#EFDCBF</color>
     <color name="pink">#FF00D4</color>

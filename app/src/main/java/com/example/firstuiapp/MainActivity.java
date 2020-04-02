@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -83,6 +84,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //SPLASH SCREEN INTENT
+
 
         //ArrayAdapter need params: this, string array in res,default layout of spinner
         stadiumSpinner = findViewById(R.id.theater_spinner);
@@ -386,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         thanksFinishTv.setText(getResources().getString(R.string.thanks)+" "+firstNameString+" "+lastNameString+"!");
         movieFinishTv.setText(movieString);
         theaterFinishTv.setText(theaterString);
-        timeFinishTv.setText(timerString); // left to right WHY??!?!
+        timeFinishTv.setText(timerString);
         dateFinishTv.setText(dateString);
     }
 }
