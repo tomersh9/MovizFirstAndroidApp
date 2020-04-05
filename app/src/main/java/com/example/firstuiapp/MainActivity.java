@@ -157,6 +157,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
                 else return; //don't crash
 
+                if(btnCount>50) {
+                    Toast.makeText(MainActivity.this, R.string.max_tickets, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(btnCount==1 && !legalCheckBox.isChecked()) {
                     Toast.makeText(MainActivity.this, R.string.legal_2_tickets_toast, Toast.LENGTH_SHORT).show();
                     return;

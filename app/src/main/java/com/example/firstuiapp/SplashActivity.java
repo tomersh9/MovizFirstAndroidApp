@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 
 public class SplashActivity extends Activity {
     //splash screen timer
-    private static int SPLASH_TIME_OUT = 3000;
-////123
+    private static int SPLASH_TIME_OUT = 2000;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

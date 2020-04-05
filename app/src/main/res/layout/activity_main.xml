@@ -563,7 +563,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/btn_shape"
+                    android:background="@drawable/btn_selector"
                     android:text="@string/rate_btn" />
             </RelativeLayout>
 

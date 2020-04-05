@@ -10,7 +10,7 @@
     </style>
 
     <style name="splash_style_txt">
-        <item name="fontFamily">@font/fredokafne_regular</item>
+        <item name="fontFamily">@font/suez_reg</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">70sp</item>
         <item name="android:textColor">@color/black</item>

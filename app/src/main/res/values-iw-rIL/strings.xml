@@ -57,5 +57,6 @@
     <string name="back_to_order">חזור להזמנה</string>
     <string name="rate_us">דרג אותנו!</string>
     <string name="rate_btn">דרג אפליקציה</string>
+    <string name="max_tickets">מקסימום כרטיסים: 50</string>
 
 </resources>
