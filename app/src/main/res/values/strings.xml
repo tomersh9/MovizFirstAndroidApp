@@ -66,5 +66,8 @@
     <string name="rate_us">Rate Us!</string>
     <string name="rate_btn">Rate app</string>
     <string name="moviz">Moviz</string>
-    <string name="max_tickets">Max tickets: 50</string>
+    <string name="max_tickets">Max tickets: 20</string>
+    <string name="dark_mode_off">dark mode OFF</string>
+    <string name="dark_mode_on">dark mode ON</string>
+    <string name="tickets">- Tickets:</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,18 @@ public class BillActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bill_layout);
+
+        //gets dark mode state from previous intent and change accordingly
+        boolean mode = getIntent().getBooleanExtra("mode",true);
+
+        if(mode) {
+            RelativeLayout relativeLayout = findViewById(R.id.main_bill_layout);
+            relativeLayout.setBackgroundColor(getResources().getColor(R.color.black));
+        }
+        else {
+            RelativeLayout relativeLayout = findViewById(R.id.main_bill_layout);
+            relativeLayout.setBackgroundColor(getResources().getColor(R.color.white));
+        }
 
         final ImageButton star1 = findViewById(R.id.star_1);
         final ImageButton star2 = findViewById(R.id.star_2);

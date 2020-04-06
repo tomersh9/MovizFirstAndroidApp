@@ -4,8 +4,8 @@
 
     <gradient
         android:angle="90"
-        android:startColor="@color/blackish"
-        android:endColor="@color/black"
+        android:startColor="@color/theater_red"
+        android:endColor="@color/splashEnd"
         android:type="linear"
         android:gradientRadius="1000dp"
         />

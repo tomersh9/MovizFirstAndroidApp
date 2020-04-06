@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/headline_layout"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -39,6 +39,20 @@
                     android:layout_below="@id/main_txt_view"
                     android:gravity="center"
                     android:text="@string/enjoy" />
+
+                <Switch
+                    android:id="@+id/dark_mode_sw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/enjoy_txt_view"
+                    android:layout_centerHorizontal="true"
+                    android:checked="true"
+                    android:fontFamily="@font/baloo_reg"
+                    android:padding="5dp"
+                    android:switchPadding="5dp"
+                    android:text="@string/dark_mode_on"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -72,7 +86,7 @@
                     android:layout_height="70dp"
                     android:layout_centerVertical="true"
                     android:layout_toStartOf="@id/movie_img"
-                    android:background="@color/black"
+                    android:background="@null"
                     android:scaleType="fitXY"
                     android:src="@drawable/arrow_selector" />
 
@@ -82,7 +96,7 @@
                     android:layout_height="70dp"
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/movie_img"
-                    android:background="@color/black"
+                    android:background="@null"
                     android:rotation="180"
                     android:scaleType="fitXY"
                     android:scaleY="-1"
@@ -339,44 +353,85 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/seats_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/legal_age_layout"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/seats_txt_view"
                     style="@style/txt_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/num_of_seats" />
 
-                <EditText
-                    android:id="@+id/seats_edit_text"
-                    style="@style/txt_style"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="220dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginBottom="25dp"
-                    android:backgroundTint="@color/theater_red"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:textColor="@color/theater_red"
-                    android:textStyle="italic" />
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
 
-            </RelativeLayout>
+                    <ImageButton
+                        android:id="@+id/btn_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/up_icon_48"
+                        android:background="@null"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:id="@+id/score_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_gravity="center"
+                        android:text="0"
+                        android:textColor="@color/theater_red"
+                        android:textSize="35sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/baloo_reg"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_dwn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/dwn_icon_48"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/seats_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/seats_layout"
+                android:layout_margin="20dp">
+
+                <LinearLayout
+                    android:id="@+id/seats_btns_dynamic_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <RelativeLayout
                 android:id="@+id/order_btn_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/seats_layout"
+                android:layout_below="@id/seats_scroll_view"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp">
@@ -395,28 +450,12 @@
 
             </RelativeLayout>
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/order_btn_layout"
-                android:layout_margin="20dp">
-
-                <LinearLayout
-                    android:id="@+id/seats_btns_dynamic_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
             <LinearLayout
                 android:id="@+id/details_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/order_btn_layout"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="100dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical"
@@ -535,7 +574,32 @@
                         android:textAlignment="viewStart" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ticket_id"
+                        style="@style/txt_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.3"
+                        android:text="@string/tickets"
+                        android:textSize="20sp"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/ticket_detail_txt_view"
+                        style="@style/details_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textAlignment="viewStart" />
+                </LinearLayout>
+
                 <TextView
+                    android:id="@+id/fun_id"
                     style="@style/txt_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

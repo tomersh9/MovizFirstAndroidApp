@@ -57,6 +57,9 @@
     <string name="back_to_order">חזור להזמנה</string>
     <string name="rate_us">דרג אותנו!</string>
     <string name="rate_btn">דרג אפליקציה</string>
-    <string name="max_tickets">מקסימום כרטיסים: 50</string>
+    <string name="dark_mode_off">מצב חשוך כבוי</string>
+    <string name="dark_mode_on">מצב חשוך דלוק</string>
+    <string name="max_tickets">מקסימום כרטיסים: 20</string>
+    <string name="tickets">- כרטיסים:</string>
 
 </resources>

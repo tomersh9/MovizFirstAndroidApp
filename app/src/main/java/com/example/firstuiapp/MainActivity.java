@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,6 +25,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -38,13 +40,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     //ImageView & TextView arrays
     int[] imgArray = {R.drawable.jango_best,R.drawable.incep_small,R.drawable.lotrone,R.drawable.lotr2,
-            R.drawable.lotr3,R.drawable.spirited,R.drawable.pulp,R.drawable.potter,
-            R.drawable.troy_medium,R.drawable.whiplash};
+            R.drawable.lotr3,R.drawable.spirited_away,R.drawable.pulp,R.drawable.harrypotter,
+            R.drawable.troya,R.drawable.whiplash};
 
     int[] txtArray = {R.string.django,R.string.inception,R.string.lotr_1,R.string.lotr_2,R.string.lotr_3,
             R.string.spirited_away,R.string.pulp,R.string.potter,R.string.troy,R.string.whiplash};
 
     static int count = 0; //for the movie select
+
+    Switch darkMode; //dark mode feature
+    boolean flag = true;
 
     //Picking movie views
     TextView movieName;
@@ -68,9 +73,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TextView dateTv;
     TextView timeTv;
 
+    //ordering tickets
+    int btnCount = 0;
+    TextView seatsTv;
+    ImageButton btnUp;
+    ImageButton btnDown;
+
     //Final Button instances
     Button finishBtn;
-    EditText seatsEt;
     Button billBtn;
 
 
@@ -85,9 +95,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //SPLASH SCREEN INTENT
-
-
         //ArrayAdapter need params: this, string array in res,default layout of spinner
         stadiumSpinner = findViewById(R.id.theater_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.theater_array,R.layout.custom_spinner); //custom settings
@@ -101,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         next = findViewById(R.id.next_arrow);
         prev = findViewById(R.id.prev_arrow);
 
-        //date & time pick
+        //date & time pick & tickets
         dateBtn = findViewById(R.id.pick_date_btn);
         dateTv = findViewById(R.id.date_txt_view);
         timeBtn = findViewById(R.id.pick_time_btn);
@@ -111,21 +118,131 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         firstName = findViewById(R.id.first_name_edit_text);
         lastName = findViewById(R.id.last_name_edit_text);
 
+        //tickets counter
+        seatsTv = findViewById(R.id.score_text_view);
+        btnUp = findViewById(R.id.btn_up);
+        btnDown = findViewById(R.id.btn_dwn);
+
         //finish button dynamic actions and layout
         finishBtn = findViewById(R.id.finish_btn);
-        seatsEt = findViewById(R.id.seats_edit_text);
         billBtn = findViewById(R.id.bill_btn);
 
         //gender and legal age pick
         radioGroup = findViewById(R.id.radio_group);
         legalCheckBox = findViewById(R.id.legal_btn);
 
+        //dark mode Switch
+        darkMode = findViewById(R.id.dark_mode_sw);
+        darkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!isChecked) {
+
+                    darkModeDisabled();
+                    flag = false;
+                }
+                else if(isChecked) {
+
+                    darkModeActivate();
+                    flag = true;
+                }
+            }
+        });
+
+        btnUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                btnCount++;
+                if(btnCount>20) {
+                    btnCount = 20;
+                    Toast.makeText(MainActivity.this, R.string.max_tickets, Toast.LENGTH_SHORT).show(); //max 20 tickets
+                    return;
+                }
+                seatsTv.setText(btnCount+""); //correct count text
+
+                LinearLayout linearLayout = findViewById(R.id.seats_btns_dynamic_layout);
+                //linearLayout.removeAllViews(); //refresh layout each time
+
+                //we are now inner class and want to access outer class
+                //so we call the name of the class.this - MainActivity.this
+                ImageButton btn = new ImageButton(MainActivity.this); //each new button
+
+                //choosing the Layout according to parent of the Button in the activity_main
+                //creating parameters to the Layout itself
+                LinearLayout.LayoutParams btnLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                btnLayoutParams.setMarginStart(20);
+                btnLayoutParams.setMarginEnd(20);
+                btn.setLayoutParams(btnLayoutParams); //applying parameters to button
+
+                final int currIndex = btnCount; //toast for seats
+                btn.setLayoutParams(new ViewGroup.LayoutParams(260,260)); //imgBtn size
+                btn.setBackground(getResources().getDrawable(R.drawable.seat_png)); //seat png
+
+                btn.setOnClickListener(new View.OnClickListener() { //toast #seat
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "seat # "+currIndex, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                linearLayout.addView(btn); //adding the button to the layout
+            }
+        });
+
+        btnDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                btnCount--;
+                if(btnCount<0) {
+                    btnCount = 0;
+                    return;
+                }
+                seatsTv.setText(btnCount+""); //setting correct count text
+
+                LinearLayout linearLayout = findViewById(R.id.seats_btns_dynamic_layout);
+                linearLayout.removeAllViews(); //refresh layout each time
+
+                for (int i=0;i<btnCount;i++) {
+
+                    //we are now inner class and want to access outer class
+                    //so we call the name of the class.this - MainActivity.this
+                    ImageButton btn = new ImageButton(MainActivity.this); //each new button
+
+                    //choosing the Layout according to parent of the Button in the activity_main
+                    //creating parameters to the Layout itself
+                    LinearLayout.LayoutParams btnLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                    btnLayoutParams.setMarginStart(20);
+                    btnLayoutParams.setMarginEnd(20);
+                    btn.setLayoutParams(btnLayoutParams); //applying parameters to button
+
+                    final int currIndex = i+1; //toast for seats
+                    btn.setLayoutParams(new ViewGroup.LayoutParams(260,260)); //imgBtn size
+                    btn.setBackground(getResources().getDrawable(R.drawable.seat_png)); //seat png
+
+                    btn.setOnClickListener(new View.OnClickListener() { //toast #seat
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(MainActivity.this, "seat # "+currIndex, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    linearLayout.addView(btn); //adding the button to the layout
+                }
+            }
+        });
+
         billBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String string = firstName.getText().toString();
                 Intent intent = new Intent(MainActivity.this,BillActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP); //back btn will save it
+                intent.putExtra("mode",flag); //change dark mode
                 startActivity(intent);
             }
         });
@@ -141,26 +258,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     flag = true;
                 }
                 else return;
-
-                //save input of tickets from user to String
-                String numOfSeats = seatsEt.getText().toString();
-                int btnCount; //buttons count int
-
-                if(numOfSeats.matches("")) {
-                    Toast.makeText(MainActivity.this, R.string.pls_buy_tickets_error, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                //prevents app from crashing with no input
-                if(numOfSeats.matches("[0-9]+")) {
-                    btnCount = Integer.parseInt(numOfSeats); //casting input to Integer
-                }
-                else return; //don't crash
-
-                if(btnCount>50) {
-                    Toast.makeText(MainActivity.this, R.string.max_tickets, Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 if(btnCount==1 && !legalCheckBox.isChecked()) {
                     Toast.makeText(MainActivity.this, R.string.legal_2_tickets_toast, Toast.LENGTH_SHORT).show();
@@ -181,8 +278,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     //***Toast according to radio button pick***//
                     toastMsgRadioGroup();
 
-                    //***Create Dynamic Layout and Buttons***//
-                    createDynamicBtnsLayout(btnCount);
                 }
             }
         });
@@ -273,6 +368,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(MainActivity.this, R.string.pls_select_gender_error, Toast.LENGTH_SHORT).show();
             return false;
         }
+        if(btnCount==0) {
+            Toast.makeText(this, R.string.pls_buy_tickets_error, Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         return true; //passed all tests
     }
@@ -329,43 +428,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    //*********Create Dynamic Layout and Buttons***********//
-    public void createDynamicBtnsLayout(final int btnCount) {
-
-        LinearLayout seatsLayout = findViewById(R.id.seats_btns_dynamic_layout); //ref to specific layout
-        seatsLayout.removeAllViews(); //remove previous buttons in layout
-
-        for (int i = 0; i < btnCount; i++) { //creating new buttons
-
-            //we are now inner class and want to access outer class
-            //so we call the name of the class.this - MainActivity.this
-            ImageButton btn = new ImageButton(MainActivity.this); //each new button
-
-            //choosing the Layout according to parent of the Button in the activity_main
-            //creating parameters to the Layout itself
-            LinearLayout.LayoutParams btnLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            btnLayoutParams.setMarginStart(20);
-            btnLayoutParams.setMarginEnd(20);
-            btn.setLayoutParams(btnLayoutParams); //applying parameters to button
-
-            final int currIndex = i+1; //toast for seats
-            btn.setLayoutParams(new ViewGroup.LayoutParams(260,260)); //imgBtn size
-            btn.setBackground(getResources().getDrawable(R.drawable.seat_png)); //seat png
-
-            btn.setOnClickListener(new View.OnClickListener() { //toast #seat
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "seat # "+currIndex, Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            seatsLayout.addView(btn); //adding the button to the layout
-
-        } //END OF LOOP
-    }
-
     //make final layout visible
     public void makeVisible() {
         RelativeLayout billLayout = findViewById(R.id.bill_layout);
@@ -381,6 +443,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TextView theaterFinishTv = findViewById(R.id.theater_detail_txt_view);
         TextView timeFinishTv = findViewById(R.id.time_detail_txt_view);
         TextView dateFinishTv = findViewById(R.id.date_detail_txt_view);
+        TextView ticketsFinishTv = findViewById(R.id.ticket_detail_txt_view);
 
 
         //get inputs of strings to chain to textViews
@@ -397,5 +460,91 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         theaterFinishTv.setText(theaterString);
         timeFinishTv.setText(timerString);
         dateFinishTv.setText(dateString);
+        ticketsFinishTv.setText(btnCount+"");
+    }
+
+    public void darkModeActivate() {
+        darkMode.setText(R.string.dark_mode_on);
+
+        //DARK MODE ON
+        RelativeLayout relativeLayout = findViewById(R.id.main_layout);
+        relativeLayout.setBackgroundColor(getResources().getColor(R.color.black));
+
+        TextView chooseMovieTv = findViewById(R.id.choose_movie_txt_view);
+        TextView chooseTheaterTv = findViewById(R.id.choose_theater_txt_view);
+        chooseMovieTv.setTextColor(getResources().getColor(R.color.white));
+        chooseTheaterTv.setTextColor(getResources().getColor(R.color.white));
+        movieName.setTextColor(getResources().getColor(R.color.white));
+
+        TextView firstNameTv = findViewById(R.id.first_name_txt_view);
+        TextView lastNameTv = findViewById(R.id.last_name_txt_view);
+        firstNameTv.setTextColor(getResources().getColor(R.color.white));
+        lastNameTv.setTextColor(getResources().getColor(R.color.white));
+
+        TextView legalAgeTv = findViewById(R.id.legal_age_txt_view);
+        legalAgeTv.setTextColor(getResources().getColor(R.color.white));
+
+        TextView seatsTv = findViewById(R.id.seats_txt_view);
+        seatsTv.setTextColor(getResources().getColor(R.color.white));
+
+        TextView thanksTv = findViewById(R.id.thanks_id);
+        TextView detailsTv = findViewById(R.id.details_id);
+        TextView movieTv = findViewById(R.id.movie_id);
+        TextView theaterTv = findViewById(R.id.theater_id);
+        TextView timeId = findViewById(R.id.time_id);
+        TextView dateId = findViewById(R.id.date_id);
+        TextView funTv = findViewById(R.id.fun_id);
+        thanksTv.setTextColor(getResources().getColor(R.color.white));
+        detailsTv.setTextColor(getResources().getColor(R.color.white));
+        movieTv.setTextColor(getResources().getColor(R.color.white));
+        theaterTv.setTextColor(getResources().getColor(R.color.white));
+        timeId.setTextColor(getResources().getColor(R.color.white));
+        dateId.setTextColor(getResources().getColor(R.color.white));
+        funTv.setTextColor(getResources().getColor(R.color.white));
+        timeTv.setTextColor(getResources().getColor(R.color.white));
+        dateTv.setTextColor(getResources().getColor(R.color.white));
+    }
+
+    public void darkModeDisabled() {
+        darkMode.setText(R.string.dark_mode_off);
+
+        //DARK MODE OFF
+        RelativeLayout relativeLayout = findViewById(R.id.main_layout);
+        relativeLayout.setBackgroundColor(getResources().getColor(R.color.white));
+
+        TextView chooseMovieTv = findViewById(R.id.choose_movie_txt_view);
+        TextView chooseTheaterTv = findViewById(R.id.choose_theater_txt_view);
+        chooseMovieTv.setTextColor(getResources().getColor(R.color.black));
+        chooseTheaterTv.setTextColor(getResources().getColor(R.color.black));
+        movieName.setTextColor(getResources().getColor(R.color.black));
+
+        TextView firstNameTv = findViewById(R.id.first_name_txt_view);
+        TextView lastNameTv = findViewById(R.id.last_name_txt_view);
+        firstNameTv.setTextColor(getResources().getColor(R.color.black));
+        lastNameTv.setTextColor(getResources().getColor(R.color.black));
+
+        TextView legalAgeTv = findViewById(R.id.legal_age_txt_view);
+        legalAgeTv.setTextColor(getResources().getColor(R.color.black));
+
+        TextView seatsTv = findViewById(R.id.seats_txt_view);
+        seatsTv.setTextColor(getResources().getColor(R.color.black));
+
+        TextView thanksTv = findViewById(R.id.thanks_id);
+        TextView detailsTv = findViewById(R.id.details_id);
+        TextView movieTv = findViewById(R.id.movie_id);
+        TextView theaterTv = findViewById(R.id.theater_id);
+        TextView timeId = findViewById(R.id.time_id);
+        TextView dateId = findViewById(R.id.date_id);
+        TextView funTv = findViewById(R.id.fun_id);
+        thanksTv.setTextColor(getResources().getColor(R.color.black));
+        detailsTv.setTextColor(getResources().getColor(R.color.black));
+        movieTv.setTextColor(getResources().getColor(R.color.black));
+        theaterTv.setTextColor(getResources().getColor(R.color.black));
+        timeId.setTextColor(getResources().getColor(R.color.black));
+        dateId.setTextColor(getResources().getColor(R.color.black));
+        funTv.setTextColor(getResources().getColor(R.color.black));
+        timeTv.setTextColor(getResources().getColor(R.color.black));
+        dateTv.setTextColor(getResources().getColor(R.color.black));
     }
 }
+
