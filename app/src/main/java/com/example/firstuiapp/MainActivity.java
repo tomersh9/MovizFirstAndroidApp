@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     static int count = 0; //for the movie select
 
     Switch darkMode; //dark mode feature
-    boolean flag = true;
+    boolean modeFlag = true;
 
     //Picking movie views
     TextView movieName;
@@ -81,8 +81,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     //Final Button instances
     Button finishBtn;
-    Button billBtn;
-
 
     //must for finish order
     RadioGroup radioGroup;
@@ -125,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //finish button dynamic actions and layout
         finishBtn = findViewById(R.id.finish_btn);
-        billBtn = findViewById(R.id.bill_btn);
 
         //gender and legal age pick
         radioGroup = findViewById(R.id.radio_group);
@@ -139,12 +136,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 if(!isChecked) {
 
                     darkModeDisabled();
-                    flag = false;
+                    modeFlag = false;
                 }
                 else if(isChecked) {
 
                     darkModeActivate();
-                    flag = true;
+                    modeFlag = true;
                 }
             }
         });
@@ -237,15 +234,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        billBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,BillActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP); //back btn will save it
-                intent.putExtra("mode",flag); //change dark mode
-                startActivity(intent);
-            }
-        });
+
 
         //place order button - sums up all details
         finishBtn.setOnClickListener(new View.OnClickListener() {
@@ -269,15 +258,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
                 else { //Main work layout
 
-                    //shows details of order
-                    makeVisible();
+                    Intent intent = new Intent(MainActivity.this,OrderActivity.class);
+                    intent.putExtra("mode",modeFlag);
+                    intent.putExtra("first_name",firstName.getText().toString());
+                    intent.putExtra("last_name",lastName.getText().toString());
+                    intent.putExtra("movie_name",movieName.getText().toString());
+                    intent.putExtra("theater_name",stadiumSpinner.getSelectedItem().toString());
+                    intent.putExtra("time",timeTv.getText().toString());
+                    intent.putExtra("date",dateTv.getText().toString());
+                    intent.putExtra("tickets",btnCount);
+                    intent.putExtra("gender",radioGroup.getCheckedRadioButtonId());
 
-                    //applies final details to TextViews that are now visible
-                    setFinalDetailsTxtViews();
-
-                    //***Toast according to radio button pick***//
-                    toastMsgRadioGroup();
-
+                    startActivity(intent);
                 }
             }
         });
@@ -428,40 +420,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    //make final layout visible
-    public void makeVisible() {
-        RelativeLayout billLayout = findViewById(R.id.bill_layout);
-        detailsLayout = findViewById(R.id.details_layout);
-        detailsLayout.setVisibility(View.VISIBLE);
-        billLayout.setVisibility(View.VISIBLE);
-    }
-
-    public void setFinalDetailsTxtViews() {
-        //setting TextView for the details layout to chain it with strings later
-        TextView thanksFinishTv = findViewById(R.id.thanks_id);
-        TextView movieFinishTv = findViewById(R.id.movie_detail_txt_view);
-        TextView theaterFinishTv = findViewById(R.id.theater_detail_txt_view);
-        TextView timeFinishTv = findViewById(R.id.time_detail_txt_view);
-        TextView dateFinishTv = findViewById(R.id.date_detail_txt_view);
-        TextView ticketsFinishTv = findViewById(R.id.ticket_detail_txt_view);
-
-
-        //get inputs of strings to chain to textViews
-        String firstNameString = firstName.getText().toString();
-        String lastNameString = lastName.getText().toString();
-        String movieString = movieName.getText().toString();
-        String timerString = timeTv.getText().toString();
-        String dateString = dateTv.getText().toString();
-        String theaterString = stadiumSpinner.getSelectedItem().toString(); //current value of spinner
-
-        //chaining strings
-        thanksFinishTv.setText(getResources().getString(R.string.thanks)+" "+firstNameString+" "+lastNameString+"!");
-        movieFinishTv.setText(movieString);
-        theaterFinishTv.setText(theaterString);
-        timeFinishTv.setText(timerString);
-        dateFinishTv.setText(dateString);
-        ticketsFinishTv.setText(btnCount+"");
-    }
 
     public void darkModeActivate() {
         darkMode.setText(R.string.dark_mode_on);
@@ -487,20 +445,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TextView seatsTv = findViewById(R.id.seats_txt_view);
         seatsTv.setTextColor(getResources().getColor(R.color.white));
 
-        TextView thanksTv = findViewById(R.id.thanks_id);
-        TextView detailsTv = findViewById(R.id.details_id);
-        TextView movieTv = findViewById(R.id.movie_id);
-        TextView theaterTv = findViewById(R.id.theater_id);
-        TextView timeId = findViewById(R.id.time_id);
-        TextView dateId = findViewById(R.id.date_id);
-        TextView funTv = findViewById(R.id.fun_id);
-        thanksTv.setTextColor(getResources().getColor(R.color.white));
-        detailsTv.setTextColor(getResources().getColor(R.color.white));
-        movieTv.setTextColor(getResources().getColor(R.color.white));
-        theaterTv.setTextColor(getResources().getColor(R.color.white));
-        timeId.setTextColor(getResources().getColor(R.color.white));
-        dateId.setTextColor(getResources().getColor(R.color.white));
-        funTv.setTextColor(getResources().getColor(R.color.white));
         timeTv.setTextColor(getResources().getColor(R.color.white));
         dateTv.setTextColor(getResources().getColor(R.color.white));
     }
@@ -529,20 +473,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         TextView seatsTv = findViewById(R.id.seats_txt_view);
         seatsTv.setTextColor(getResources().getColor(R.color.black));
 
-        TextView thanksTv = findViewById(R.id.thanks_id);
-        TextView detailsTv = findViewById(R.id.details_id);
-        TextView movieTv = findViewById(R.id.movie_id);
-        TextView theaterTv = findViewById(R.id.theater_id);
-        TextView timeId = findViewById(R.id.time_id);
-        TextView dateId = findViewById(R.id.date_id);
-        TextView funTv = findViewById(R.id.fun_id);
-        thanksTv.setTextColor(getResources().getColor(R.color.black));
-        detailsTv.setTextColor(getResources().getColor(R.color.black));
-        movieTv.setTextColor(getResources().getColor(R.color.black));
-        theaterTv.setTextColor(getResources().getColor(R.color.black));
-        timeId.setTextColor(getResources().getColor(R.color.black));
-        dateId.setTextColor(getResources().getColor(R.color.black));
-        funTv.setTextColor(getResources().getColor(R.color.black));
         timeTv.setTextColor(getResources().getColor(R.color.black));
         dateTv.setTextColor(getResources().getColor(R.color.black));
     }

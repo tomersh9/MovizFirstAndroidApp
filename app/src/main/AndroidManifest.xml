@@ -18,6 +18,10 @@
             android:label="bill_activity"
             android:configChanges="orientation|screenSize"/>
 
+        <activity android:name=".OrderActivity"
+            android:label="Order Details"
+            android:configChanges="orientation|screenSize"/>
+
         <activity
             android:name=".SplashActivity"
             android:label="@string/moviz">

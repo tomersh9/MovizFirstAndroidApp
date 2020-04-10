@@ -61,5 +61,8 @@
     <string name="dark_mode_on">מצב חשוך דלוק</string>
     <string name="max_tickets">מקסימום כרטיסים: 20</string>
     <string name="tickets">- כרטיסים:</string>
+    <string name="change_order">החלף הזמנה</string>
+    <string name="order_confirm">הזמנתך בוצעה בהצלחה!</string>
+    <string name="back_to_details">חזור לחשבונית</string>
 
 </resources>

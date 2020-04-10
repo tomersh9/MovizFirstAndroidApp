@@ -70,4 +70,7 @@
     <string name="dark_mode_off">dark mode OFF</string>
     <string name="dark_mode_on">dark mode ON</string>
     <string name="tickets">- Tickets:</string>
+    <string name="change_order">Change Order</string>
+    <string name="order_confirm">Order Confirmed!</string>
+    <string name="back_to_details">Back to Receipt</string>
 </resources>
