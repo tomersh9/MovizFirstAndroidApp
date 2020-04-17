@@ -221,54 +221,33 @@
                 android:layout_below="@id/btn_pickers_layout"
                 android:layout_margin="20dp">
 
-                <TextView
-                    android:id="@+id/first_name_txt_view"
-                    style="@style/txt_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/input_first_name" />
-
                 <EditText
                     android:id="@+id/first_name_edit_text"
                     style="@style/txt_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/first_name_txt_view"
-                    android:layout_marginStart="170dp"
-                    android:layout_marginEnd="25dp"
-                    android:backgroundTint="@color/theater_red"
-                    android:hint="@string/hint_first_name"
+                    android:background="@drawable/edit_text_shape"
+                    android:gravity="center"
+                    android:hint="@string/input_first_name"
                     android:inputType="textCapSentences"
-                    android:padding="3dip"
-                    android:paddingStart="8dip"
+                    android:padding="10dp"
                     android:singleLine="true"
-                    android:textColor="@color/theater_red"
                     android:textColorHint="@color/grey"
                     android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/last_name_txt_view"
-                    style="@style/txt_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:text="@string/input_last_name" />
 
                 <EditText
                     android:id="@+id/last_name_edit_text"
                     style="@style/txt_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/last_name_txt_view"
-                    android:layout_marginStart="170dp"
-                    android:layout_marginEnd="25dp"
-                    android:backgroundTint="@color/theater_red"
-                    android:hint="@string/hint_last_name"
+                    android:layout_below="@id/first_name_edit_text"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/edit_text_shape"
+                    android:gravity="center"
+                    android:hint="@string/input_last_name"
                     android:inputType="textCapSentences"
-                    android:padding="3dip"
-                    android:paddingStart="8dip"
+                    android:padding="10dp"
                     android:singleLine="true"
-                    android:textColor="@color/theater_red"
                     android:textColorHint="@color/grey"
                     android:textStyle="italic" />
 
@@ -358,8 +337,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/legal_age_layout"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical">
@@ -383,30 +362,30 @@
                         android:id="@+id/btn_up"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/plus_btn_selector"
+                        android:layout_gravity="center"
                         android:background="@null"
-                        android:layout_gravity="center" />
+                        android:src="@drawable/plus_btn_selector" />
 
                     <TextView
                         android:id="@+id/score_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginStart="25dp"
                         android:layout_marginEnd="25dp"
-                        android:layout_gravity="center"
+                        android:fontFamily="@font/baloo_reg"
                         android:text="0"
                         android:textColor="@color/theater_red"
                         android:textSize="35sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/baloo_reg"/>
+                        android:textStyle="bold" />
 
                     <ImageButton
                         android:id="@+id/btn_dwn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:background="@null"
-                        android:src="@drawable/minus_btn_selector"
-                        android:layout_gravity="center" />
+                        android:src="@drawable/minus_btn_selector" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -431,8 +410,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/seats_scroll_view"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp">
 

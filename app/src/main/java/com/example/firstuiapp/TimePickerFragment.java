@@ -18,7 +18,7 @@ public class TimePickerFragment extends DialogFragment {
 
         //instance of calendar to get hour & minute
         Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(calendar.HOUR);
+        int hour = calendar.get(calendar.HOUR_OF_DAY);
         int minute = calendar.get(calendar.MINUTE);
 
         //returns new Time Dialog Picker with current hour and minute in 24h format

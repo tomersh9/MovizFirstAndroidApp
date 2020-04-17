@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -248,11 +249,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
                 else return;
 
-                if(btnCount==1 && !legalCheckBox.isChecked()) {
-                    Toast.makeText(MainActivity.this, R.string.legal_2_tickets_toast, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 if(!flag) { //if user didn't fill a field
                     return;
                 }
@@ -273,6 +269,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
         });
+
 
         //Time Picker Dialog popup when pressing timeBtn
         timeBtn.setOnClickListener(new View.OnClickListener() {
@@ -364,8 +361,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             Toast.makeText(this, R.string.pls_buy_tickets_error, Toast.LENGTH_SHORT).show();
             return false;
         }
+        if(btnCount==1 && !legalCheckBox.isChecked()) {
+            Toast.makeText(MainActivity.this, R.string.legal_2_tickets_toast, Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         return true; //passed all tests
+    }
+
+    public void progressDialog() { //dialog for finish order for 2 secs
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setMessage("Finishing order..");
+        progressDialog.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                progressDialog.dismiss();
+            }
+        },7000);
     }
 
     //*********************SPINNER******************************************************//
@@ -398,29 +415,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         else timeTv.setText(hourOfDay + ":" + minute);
     }
 
-    //Toast according to gender
-    public void toastMsgRadioGroup() {
-
-        if(radioGroup.getCheckedRadioButtonId()==R.id.male_radio_btn){
-
-            Toast.makeText(MainActivity.this, R.string.good_job_man, Toast.LENGTH_SHORT).show();
-        }
-        else if(radioGroup.getCheckedRadioButtonId()==R.id.female_radio_btn){
-
-            Toast.makeText(MainActivity.this, R.string.good_job_woman, Toast.LENGTH_SHORT).show();
-        }
-        else if(radioGroup.getCheckedRadioButtonId()==R.id.other_radio_btn) {
-
-            //the right way to check current drawable
-            if(currImg.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.lotr2).getConstantState()) {
-
-                Toast.makeText(MainActivity.this, R.string.sagiv, Toast.LENGTH_SHORT).show();
-            }
-            else Toast.makeText(MainActivity.this, R.string.good_job_other, Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
     public void darkModeActivate() {
         darkMode.setText(R.string.dark_mode_on);
 
@@ -434,10 +428,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         chooseTheaterTv.setTextColor(getResources().getColor(R.color.white));
         movieName.setTextColor(getResources().getColor(R.color.white));
 
-        TextView firstNameTv = findViewById(R.id.first_name_txt_view);
-        TextView lastNameTv = findViewById(R.id.last_name_txt_view);
-        firstNameTv.setTextColor(getResources().getColor(R.color.white));
-        lastNameTv.setTextColor(getResources().getColor(R.color.white));
+        firstName.setTextColor(getResources().getColor(R.color.white));
+        lastName.setTextColor(getResources().getColor(R.color.white));
 
         TextView legalAgeTv = findViewById(R.id.legal_age_txt_view);
         legalAgeTv.setTextColor(getResources().getColor(R.color.white));
@@ -462,10 +454,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         chooseTheaterTv.setTextColor(getResources().getColor(R.color.black));
         movieName.setTextColor(getResources().getColor(R.color.black));
 
-        TextView firstNameTv = findViewById(R.id.first_name_txt_view);
-        TextView lastNameTv = findViewById(R.id.last_name_txt_view);
-        firstNameTv.setTextColor(getResources().getColor(R.color.black));
-        lastNameTv.setTextColor(getResources().getColor(R.color.black));
+        firstName.setTextColor(getResources().getColor(R.color.black));
+        lastName.setTextColor(getResources().getColor(R.color.black));
 
         TextView legalAgeTv = findViewById(R.id.legal_age_txt_view);
         legalAgeTv.setTextColor(getResources().getColor(R.color.black));

@@ -42,8 +42,8 @@
     <string name="legal_2_tickets_toast">You must purchase at least 2 tickets as a minor</string>
     <string name="hint_first_name">Saba</string>
     <string name="hint_last_name">Tobi</string>
-    <string name="good_job_man">God job man!</string>
-    <string name="good_job_woman">Good job lady!</string>
+    <string name="good_job_man">Good job sir</string>
+    <string name="good_job_woman">Good job lady</string>
     <string name="good_job_other">Good job you..?</string>
     <string name="sagiv">Sagiv Gay</string>
     <string name="thanks">Thank you</string>

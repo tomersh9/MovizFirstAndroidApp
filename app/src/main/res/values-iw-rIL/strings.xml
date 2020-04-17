@@ -34,8 +34,7 @@
     <string name="legal_2_tickets_toast">עליך לרכוש לפחות 2 כרטיסים כצעיר</string>
     <string name="hint_first_name">סבא</string>
     <string name="hint_last_name">טובי</string>
-    <string name="good_job_man">עבודה יפה גבר!</string>
-    <string name="good_job_woman">עבודה יפה גברת!</string>
+    <string name="good_job_woman">עבודה יפה גברת</string>
     <string name="sagiv">שגיב גיי</string>
     <string name="good_job_other">עבודה יפה יחסית ל.. אה..</string>
     <string name="thanks">תודה לך</string>
@@ -64,5 +63,6 @@
     <string name="change_order">החלף הזמנה</string>
     <string name="order_confirm">הזמנתך בוצעה בהצלחה!</string>
     <string name="back_to_details">חזור לחשבונית</string>
+    <string name="good_job_man">עבודה יפה אדוני</string>
 
 </resources>
